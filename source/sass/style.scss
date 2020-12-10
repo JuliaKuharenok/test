@@ -1,0 +1,137 @@
+.body {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.form__list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.form__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+        & label {
+           margin-bottom: 15px; 
+        }
+        &::after {
+            position: absolute;
+            content: '₽';
+            right: 5%;
+            top: 43px;
+        }
+}
+
+.form__item--credit-time::after {
+    content: 'лет';
+}
+
+.form__item--interest-rate::after {
+    content: '%';
+}
+
+.form__item input {
+    margin-bottom: 10px;
+    padding: 10px;
+    -moz-appearance: textfield;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        &:hover,
+        &:focus {
+            appearance: none;
+            -moz-appearance: textfield;
+        }
+}
+
+.anchors {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.anchors__item {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(199, 198, 198);
+    padding: 5px;
+    cursor: pointer;
+        &:hover {
+            background-color: rgb(165, 165, 165);
+        }
+}
+
+.anchors__item--active {
+    background-color: rgb(99, 99, 240);
+    color: white;
+        &:hover {
+            background-color: rgb(72, 72, 236); 
+        }
+}
+
+.form__button-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10%;
+}
+
+.form__button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form__button--save {
+    background-color: rgb(98, 192, 98);
+    color: white;
+        &:hover {
+            background-color:  rgb(74, 144, 74);
+        }
+}
+
+.form__button--clear {
+    background-color: rgb(199, 198, 198);
+    color: grey;
+        &:hover {
+            background-color: rgb(165, 165, 165);
+        }
+}
+
+.results {
+    background-color: rgb(199, 198, 198);
+    margin-bottom: 40%;
+    margin-left: 20px;
+    margin-top: 33px;
+}
+
+.results__list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 13%;
+    row-gap: 50px;
+    padding: 40px;
+}
+
+.results__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.results__item span {
+    margin-top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+}
