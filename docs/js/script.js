@@ -20,7 +20,7 @@ const userData = {
     const result = this.appartmentCost - this.payment;
 
     if (result < 0 || isNaN(result)) {
-      return `рассчет...`;
+      return 0;
     }
 
     return result;
@@ -31,7 +31,7 @@ const userData = {
     const result = Math.round(this.getCredit() * (x + (x / (Math.pow((1 + x), this.time) - 1))));
 
     if (isNaN(result)) {
-      return `рассчет...`;
+      return 0;
     }
 
     return result;
@@ -41,7 +41,7 @@ const userData = {
     const result = Math.round(5 * (this.getMonthlyPayment() / 3));
     
     if (isNaN(result)) {
-      return `рассчет...`;
+      return 0;
     }
 
     return result;
@@ -51,7 +51,7 @@ const userData = {
     const result = this.getMonthlyPayment() * this.time - this.appartmentCost + this.payment;
 
     if (result < 0 || isNaN(result)) {
-      return `рассчет...`;
+      return 0;
     }
 
     return result;
@@ -59,22 +59,22 @@ const userData = {
 
   updatePayment: function () {
     const multipluer = document.querySelector(`.anchors__item--active`).value;
-    document.querySelector(`#payment`).value = view.numberWithSpaces(Math.round(this.appartmentCost * multipluer / 100));
+    view.paymentInput.value = view.numberWithSpaces(Math.round(this.appartmentCost * multipluer / 100));
     this.updateValue();
     view.showResults();
   },
 
   updateAppartmentCost: function () {
     const multipluer = document.querySelector(`.anchors__item--active`).value;
-    document.querySelector(`#cost`).value = view.numberWithSpaces(Math.round(this.payment * 100 / multipluer));
+    view.costInput.value = view.numberWithSpaces(Math.round(this.payment * 100 / multipluer));
   },
 
   saveData: function () {
     this.data = [];
-    this.data.push(document.getElementById('cost').value);
-    this.data.push(document.getElementById('payment').value);
-    this.data.push(document.getElementById('credit-time').value);
-    this.data.push(document.getElementById('interest-rate').value);
+    this.data.push(view.costInput.value);
+    this.data.push(view.paymentInput.value);
+    this.data.push(view.timeInput.value);
+    this.data.push(view.interestRateInput.value);
     localStorage.setItem('inputData', JSON.stringify(this.data));
   },
 
@@ -119,17 +119,17 @@ const view = {
   },
 
   clearData: function () {
-    this.clearButton.addEventListener(`click`, () => {
-      this.form.reset();
-    });
+    this.form.reset();
+    userData.updateValue();
+    view.showResults();
   },
 
   loadData: function () {
     this.data = JSON.parse(localStorage.getItem('inputData'));
-    document.getElementById('cost').value = this.data[0];
-    document.getElementById('payment').value = this.data[1];
-    document.getElementById('credit-time').value = this.data[2];
-    document.getElementById('interest-rate').value = this.data[3];
+    this.costInput.value = this.data[0];
+    this.paymentInput.value = this.data[1];
+    this.timeInput.value = this.data[2];
+    this.interestRateInput.value = this.data[3];
   },
 
   numberWithSpaces: function (value) {
@@ -147,7 +147,6 @@ view.saveButton.addEventListener('click', userData.saveData);
 window.addEventListener('load', () => {
   view.loadData();
   userData.updateValue();
-  userData.updatePayment();
   view.showResults();
 });
 
@@ -157,11 +156,11 @@ for (let i = 0; i < view.inputs.length; i++) {
     view.inputs[i].value = view.numberWithSpaces(view.inputs[i].value);
     userData.updateValue();
     view.showResults();
-    if (view.inputs[i] === view.inputs[0]) {
+    if (view.inputs[i] === view.costInput) {
       userData.updatePayment();
     }
     
-    if (view.inputs[i] === view.inputs[1]) {
+    if (view.inputs[i] === view.paymentInput) {
       userData.updateAppartmentCost();
     }
   });
@@ -171,7 +170,9 @@ for (let i = 0; i < view.anchors.length; i++) {
   view.anchors[i].addEventListener(`click`, view.anchorsOn);
 }
 
-view.clearData();
+view.clearButton.addEventListener(`click`, view.clearData);
+
+module.exports = { getCredit }
 
 
 

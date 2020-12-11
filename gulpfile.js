@@ -17,7 +17,7 @@ const styles = () => {
     ]))
     .pipe(csso())
     .pipe(rename("style.min.css"))
-    .pipe(gulp.dest("build/css"))
+    .pipe(gulp.dest("docs/css"))
     .pipe(sync.stream());
 }
 
@@ -27,7 +27,7 @@ exports.styles = styles;
 
 const script = () => {
   return gulp.src("source/js/script.js")
-  .pipe(gulp.dest("build/js"))
+  .pipe(gulp.dest("docs/js"))
   .pipe(sync.stream());
 }
 
@@ -37,7 +37,7 @@ exports.script = script;
 
 const html = () => {
   return gulp.src("source/*.html")
-  .pipe(gulp.dest("build"))
+  .pipe(gulp.dest("docs"))
 }
 
 // Server
@@ -45,7 +45,7 @@ const html = () => {
 const server = (done) => {
   sync.init({
     server: {
-      baseDir: 'build'
+      baseDir: 'docs'
     },
     cors: true,
     notify: false,
@@ -76,7 +76,7 @@ const copy = () => {
   ], {
       base: "source"
   })
-  .pipe(gulp.dest("build"));
+  .pipe(gulp.dest("docs"));
 };
 
 exports.copy = copy;
@@ -84,7 +84,7 @@ exports.copy = copy;
 // Clean
 
 const clean = () => {
-  return del("build");
+  return del("docs");
 };
 
 exports.clean = clean;
