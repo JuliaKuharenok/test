@@ -172,7 +172,7 @@ for (let i = 0; i < view.anchors.length; i++) {
 
 view.clearButton.addEventListener(`click`, view.clearData);
 
-module.exports = { getCredit }
+
 
 
 
