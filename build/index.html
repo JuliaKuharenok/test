@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html class="page" lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Test</title>
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body class="page__body body">
+  <form class="body__form form" action="/" method="GET" id="form">
+    <ul class="form__list">
+      <li class="form__item form__item--cost">
+        <label for="cost">Стоимость недвижимости</label>
+        <input type="text" name="cost" id="cost" placeholder="20 000 000" maxlength="13"></input>
+      </li>
+      <li class="form__item form__item--payment">
+        <label for="payment">Первоначальный взнос</label>
+        <input type="text" name="payment" id="payment" placeholder="3 000 000" maxlength="13"></input>
+        <ul class="form__anchors anchors">
+          <li><button type="button" value="10" class="anchors__item">10%</button></li>
+          <li><button type="button" value="15" class="anchors__item anchors__item--active">15%</button></li>
+          <li><button type="button" value="20" class="anchors__item">20%</button></li>
+          <li><button type="button" value="25" class="anchors__item">25%</button></li>
+          <li><button type="button" value="30" class="anchors__item">30%</button></li>
+        </ul>
+      </li>
+      <li class="form__item form__item--credit-time">
+        <label for="credit-time">Срок кредита</label>
+        <input type="text" name="credit-time" id="credit-time" placeholder="10" maxlength="2"></input>
+      </li>
+      <li class="form__item form__item--interest-rate">
+        <label for="interest-rate">Процентная ставка</label>
+        <input type="text" name="interest-rate" id="interest-rate" placeholder="10" maxlength="2"></input>
+      </li>
+    </ul>
+    <div class="form__button-wrapper">
+      <button type="button" type="submit" class="form__button form__button--save">Save</button>
+      <button type="button" class="form__button form__button--clear">Clear</button>
+    </div>
+  </form>
+  <div class="body__results results">
+    <ul class="results__list">
+      <li class="results__item item">Ежемесячный платеж<span class="item__monthly-payment">0</span></li>
+      <li class="results__item item">Необходимый доход<span class="item__income">0</span></li>
+      <li class="results__item item">Переплата<span class="item__overpayment">0</span></li>
+      <li class="results__item item">Тело кредита<span class="item__credit">0</span></li>
+    </ul>
+  </div>
+</body>
+<script src="js/script.js"></script>
+</html>
