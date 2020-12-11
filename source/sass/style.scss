@@ -38,17 +38,6 @@
 .form__item input {
     margin-bottom: 10px;
     padding: 10px;
-    -moz-appearance: textfield;
-        &::-webkit-outer-spin-button,
-        &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        &:hover,
-        &:focus {
-            appearance: none;
-            -moz-appearance: textfield;
-        }
 }
 
 .anchors {
